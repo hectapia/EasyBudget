@@ -1,0 +1,46 @@
+# --- Kotlin / Java build outputs --- 
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# --- Compiled source --- 
+*.com
+*.dll
+*.exe
+*.o
+*.so
+
+# --- Logs and temp files ---
+*.log
+*.tmp
+*.swp
+
+# --- IDE specific files ---
+# VS Code
+.vscode/
+
+# --- IntelliJ IDEA / JetBrains --- 
+.idea/
+*.iml
+out/
+
+# --- Gradle ---
+.gradle/
+build/
+
+# --- Maven ---
+target/
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+
+# --- Kotlin specific ---
+*.kotlin_module
+
+# --- Backup files ---
+*~
