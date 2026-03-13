@@ -1,41 +1,79 @@
 /**
- * Sprint 1: Data Class Requirement
- * Represents a single financial transaction.
+ * Sprint 1: CLI-EasyBudget
+ * Implements basics, OOP, and demo logic.
  */
+
+// Data Class Requirement 
 data class Expense(
     val id: Int,               // Immutable
     var name: String,          // Mutable
     var amount: Double,
-    val category: String,
+    var category: String,
     val date: String
 )
 
-fun main() {
-    // 1. Variables & Collections
-    val budgetLimit = 500.0
-    val expenseList = mutableListOf<Expense>()
+// Class Requirement 
+class BudgetTracker(private val budgetLimit: Double) {
+    private val expenseList = mutableListOf<Expense>()
 
-    // 2. Creating instances of the Data Class
+    // Properties with custom getter 
+    val totalSpending: Double
+        get() = expenseList.sumOf { it.amount }
+
+    // Function Requirement 
+    fun addExpense(expense: Expense) {
+        expenseList.add(expense)
+    }
+
+    fun showExpenses() {
+        println("\n--- Expense List ---")
+        for (item in expenseList) {
+            println("${item.id}. ${item.name} - \$${item.amount} [${item.category}] on ${item.date}")
+        }
+    }
+
+    fun status(): String {
+        return when {
+            totalSpending > budgetLimit -> "Over Budget! ⚠️"
+            totalSpending == budgetLimit -> "At Limit 🎯"
+            else -> "Under Budget ✅"
+        }
+    }
+}
+
+fun main() {
+    // Variables & Expressions 
+    val tracker = BudgetTracker(500.0)
+
+    // Creating instances of the Data Class 
     val coffee = Expense(1, "Coffee", 4.50, "Food", "2026-03-04")
     val rent = Expense(2, "Monthly Rent", 450.0, "Housing", "2026-03-01")
 
-    expenseList.add(coffee)
-    expenseList.add(rent)
+    // Functions & Loops 
+    tracker.addExpense(coffee)
+    tracker.addExpense(rent)
 
-    // 3. Logic: Loop and Conditional
-    var totalSpending = 0.0
-    for (item in expenseList) {
-        totalSpending += item.amount
-    }
+    // Review & Practice 
+    tracker.showExpenses()
+    println("\nTotal Spending: \$${tracker.totalSpending}")
+    println("Current Status: ${tracker.status()}")
 
-    println("Total Spending: \$$totalSpending")
+    // Demo CLI Interaction 
+    println("\n--- Add a new expense ---")
+    print("Enter name: ")
+    val name = readLine() ?: "Unknown"
+    print("Enter amount: ")
+    val amount = readLine()?.toDoubleOrNull() ?: 0.0
+    print("Enter category: ")
+    val category = readLine() ?: "Misc"
+    print("Enter date (YYYY-MM-DD): ")
+    val date = readLine() ?: "2026-03-12"
 
-    // 4. Expressions & When Keyword (Bonus Requirement)
-    val status = when {
-        totalSpending > budgetLimit -> "Over Budget! ⚠️"
-        totalSpending == budgetLimit -> "At Limit 🎯"
-        else -> "Under Budget ✅"
-    }
+    val newExpense = Expense(tracker.hashCode(), name, amount, category, date)
+    tracker.addExpense(newExpense)
 
-    println("Current Status: $status")
+    println("\nUpdated Expenses:")
+    tracker.showExpenses()
+    println("Total Spending: \$${tracker.totalSpending}")
+    println("Current Status: ${tracker.status()}")
 }
