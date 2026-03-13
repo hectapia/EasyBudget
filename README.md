@@ -4,7 +4,7 @@ EasyBudget is a simple command-line expense tracker built in Kotlin. The goal of
 
 The software allows users to record expenses, categorize them, and compare total spending against a budget limit. It demonstrates how Kotlin’s syntax and features can be used to implement clean, concise, and expressive code. My purpose in writing this software was to deepen my knowledge of Kotlin’s object-oriented programming capabilities and practice building a small but functional CLI application.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/QyvKhQnDOjU)
 
 # Development Environment
 
