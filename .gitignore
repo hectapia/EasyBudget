@@ -1,46 +1,32 @@
-# --- Kotlin / Java build outputs --- 
-*.class
+# --- Kotlin/Java Compilation ---
+# Ignore the directory where .class files are stored
+bin/
+# Ignore the final JAR file (it should be built from source, not stored)
 *.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# --- Compiled source --- 
-*.com
-*.dll
-*.exe
-*.o
-*.so
-
-# --- Logs and temp files ---
-*.log
-*.tmp
-*.swp
-
-# --- IDE specific files ---
-# VS Code
-.vscode/
-
-# --- IntelliJ IDEA / JetBrains --- 
-.idea/
-*.iml
-out/
-
-# --- Gradle ---
-.gradle/
-build/
-
-# --- Maven ---
-target/
-
-# --- OS generated files ---
-.DS_Store
-Thumbs.db
-
-# --- Kotlin specific ---
 *.kotlin_module
 
-# --- Backup files ---
-*~
+# --- Database ---
+# Ignore the SQLite database file and temporary journal files
+# This prevents your personal budget data from being uploaded to GitHub
+data/*.db
+data/*.db-journal
+data/*.db-shm
+data/*.db-wal
+
+# --- VS Code & IDEs ---
+# Ignore local workspace settings
+.vscode/
+.history/
+*.log
+
+# --- Operating System ---
+# Windows thumbnail cache and folder settings
+Thumbs.db
+desktop.ini
+# macOS folder attributes
+.DS_Store
+
+# --- Build Tools (If you use them later) ---
+.gradle/
+build/
+target/
