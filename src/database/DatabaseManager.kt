@@ -5,7 +5,7 @@ import java.sql.DriverManager
 import java.sql.Connection
 import java.sql.PreparedStatement
 
-class DatabaseManager(dbPath: String) {
+class DatabaseManager(dbPath: String) : BudgetRepository {
     private val connection: Connection = DriverManager.getConnection("jdbc:sqlite:$dbPath")
 
     init {
@@ -22,7 +22,7 @@ class DatabaseManager(dbPath: String) {
     }
 
     // Requirement: Insert Data
-    fun addExpense(expense: Expense) {
+    override fun addExpense(expense: Expense) {
         val sql = "INSERT INTO expenses (name, amount, category) VALUES (?, ?, ?)"
         val pstmt: PreparedStatement = connection.prepareStatement(sql)
         pstmt.setString(1, expense.name)
@@ -32,7 +32,7 @@ class DatabaseManager(dbPath: String) {
     }
 
     // Requirement: Retrieve/Query Data
-    fun getAllExpenses(): List<Expense> {
+    override fun getAllExpenses(): List<Expense> {
         val expenses = mutableListOf<Expense>()
         val rs = connection.createStatement().executeQuery("SELECT * FROM expenses")
         while (rs.next()) {
@@ -47,7 +47,7 @@ class DatabaseManager(dbPath: String) {
     }
 
     // Requirement: Modify Data
-    fun updateExpense(id: Int, newAmount: Double) {
+    override fun updateExpense(id: Int, newAmount: Double) {
         val sql = "UPDATE expenses SET amount = ? WHERE id = ?"
         val pstmt = connection.prepareStatement(sql)
         pstmt.setDouble(1, newAmount)
@@ -56,7 +56,7 @@ class DatabaseManager(dbPath: String) {
     }
 
     // Requirement: Delete Data
-    fun deleteExpense(id: Int) {
+    override fun deleteExpense(id: Int) {
         val sql = "DELETE FROM expenses WHERE id = ?"
         val pstmt = connection.prepareStatement(sql)
         pstmt.setInt(1, id)
@@ -64,7 +64,7 @@ class DatabaseManager(dbPath: String) {
     }
 
     // Bonus Requirement: Aggregate Function (SUM)
-    fun getTotalSpending(): Double {
+    override fun getTotalSpending(): Double {
         val rs = connection.createStatement().executeQuery("SELECT SUM(amount) FROM expenses")
         return if (rs.next()) rs.getDouble(1) else 0.0
     }

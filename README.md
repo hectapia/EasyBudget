@@ -6,11 +6,13 @@ EasyBudget is a simple command-line expense tracker built in Kotlin. The goal of
 The software allows users to record expenses, categorize them, and compare total spending against a budget limit. It demonstrates how Kotlin’s syntax and features can be used to implement clean, concise, and expressive code. My purpose in writing this software was to deepen my knowledge of Kotlin’s object-oriented programming capabilities and practice building a small but functional CLI application.
 
 ## Sprint 2
-As a software engineer, I am developing **Easy Budget** to master the architectural challenges of "Offline-First" mobile development. My focus for this stage of learning is implementing a robust data abstraction layer that allows a Kotlin application to switch seamlessly between a local SQLite database and a cloud-hosted PostgreSQL database via Supabase.
+As a software engineer, I am developing **Easy Budget** to bridge the gap between high-level logic and persistent data management. My goal with this project is to master Kotlin’s object-oriented principles while gaining hands-on experience with relational database integration, specifically using the "Serverless" local-first architecture.
 
-Easy Budget is a financial management system designed to provide real-time budget tracking regardless of connectivity. This current module serves as the logic and data engine, demonstrating a "Repository Pattern" in Kotlin. It handles complex SQL operations, including data persistence, multi-table schema management, and aggregate calculations to provide users with a clear view of their financial health.
+Easy Budget is a financial management tool currently operating as a Command Line Interface (CLI). It allows users to create, read, update, and delete (CRUD) financial records. Unlike simple in-memory trackers, this software interfaces directly with a SQLite database, ensuring that budget data persists across different sessions. The logic includes data validation, object-relational mapping using Kotlin Data Classes, and aggregate financial calculations.
 
-The purpose of this software is to solve the problem of data availability in mobile environments. By writing a hybrid storage engine, I am learning how to manage connection states, handle SQL dialect differences between SQLite and PostgreSQL, and maintain data integrity across different environments. This groundwork is essential for the final phase of building a fully synchronized Android application.
+The purpose of writing this software is to establish a robust backend foundation for a future native Android application. By handling the database logic in a standalone Kotlin environment first, I can ensure the core financial engine is stable, type-safe, and efficient before introducing the complexities of a mobile User Interface.
+
+To automate the switch between the local SQLite and cloud Supabase PostgreSQL database, yI need to implement a Repository Pattern. This architecture decouples your main application logic from the data source, allowing a "Network Checker" to swap them out dynamically (In progress).
 
 [Software Demo Video](https://youtu.be/QyvKhQnDOjU) Sprin 1
 [Software Demo Video](http://youtube.link.goes.here) Sprin 2
@@ -25,16 +27,17 @@ The software is built using **Kotlin 1.9** and leverages:
 * **JDBC (Java Database Connectivity):** To build and submit dynamic SQL commands.
 * **The Repository Pattern:** An architectural design that decouples the application logic from the specific database implementation.
 
-### How to run Sprint 1
+### How to run Sprint 1, branch 1st-sprint-v3
 ```
 kotlinc EasyBudget.kt -include-runtime -d EasyBudget.jar
 java -jar CLI-EasyBudget.jar
 ```
 
-### How to run Sprint 2
-```
-kotlinc src/main.kt src/models/Expense.kt src/database/DatabaseManager.kt -cp "lib/sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
-java -cp "EasyBudget.jar;lib/sqlite-jdbc-3.51.2.0.jar" MainKt
+### How to run Sprint 2, branch 2nd-sprint-v2
+```PowerShell
+kotlinc src\main.kt src\models\Expense.kt src\database\DatabaseManager.kt src\database\BudgetRepository.kt src\database\SupabaseManager.kt src\utils\NetworkUtils.kt -cp "lib\postgresql-42.7.2.jar;lib\sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
+
+java --enable-native-access=ALL-UNNAMED -cp "EasyBudget.jar;lib/*" MainKt
 ```
 
 # Useful Websites

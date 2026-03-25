@@ -1,14 +1,25 @@
-import database.DatabaseManager
 import models.Expense
+import database.DatabaseManager // SQLite implementation
+import database.SupabaseManager // Postgres implementation
+import database.BudgetRepository
+import utils.NetworkUtils
 import java.util.Scanner
 
 fun main() {
-    val db = DatabaseManager("data/budget.db")
     val scanner = Scanner(System.`in`)
-    var running = true
+    
+    // Automation Logic: Determine data source based on network
+    println("Checking connectivity...")
+    val db: BudgetRepository = if (NetworkUtils.isOnline()) {
+        println("Connected to Supabase (Cloud Mode)")
+        SupabaseManager() 
+    } else {
+        println("Network offline. Switching to SQLite (Local Mode)")
+        DatabaseManager("data/budget.db")
+    }
 
     println("--- Easy Budget: Sprint 2 CLI ---")
-
+    var running = true
     while (running) {
         println("\n1. View Expenses | 2. Add | 3. Update Amount | 4. Delete | 5. Total | 6. Exit")
         print("Selection: ")
