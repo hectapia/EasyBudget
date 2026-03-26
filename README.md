@@ -12,8 +12,6 @@ Easy Budget is a financial management tool currently operating as a Command Line
 
 The purpose of writing this software is to establish a robust backend foundation for a future native Android application. By handling the database logic in a standalone Kotlin environment first, I can ensure the core financial engine is stable, type-safe, and efficient before introducing the complexities of a mobile User Interface.
 
-To automate the switch between the local SQLite and cloud Supabase PostgreSQL database, yI need to implement a Repository Pattern. This architecture decouples your main application logic from the data source, allowing a "Network Checker" to swap them out dynamically (In progress).
-
 [Software Demo Video](https://youtu.be/QyvKhQnDOjU) Sprin 1
 [Software Demo Video](http://youtube.link.goes.here) Sprin 2
 
