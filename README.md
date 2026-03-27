@@ -43,7 +43,7 @@ erDiagram
 
 ## Software Demo Videos
 
-[Video Sprint 1](https://youtu.be/QyvKhQnDOjU) 
+[Video Sprint 1](https://youtu.be/QyvKhQnDOjU) <br>
 [Video Sprint 2](http://youtube.link.goes.here) 
 
 # Development Environment
@@ -63,8 +63,10 @@ java -jar CLI-EasyBudget.jar
 
 ### How to run Sprint 2, branch 2nd-sprint-v2
 ```powershell
-### use PowerShell
+# use PowerShell
 EasyBudget> kotlinc src/main.kt src/models/Expense.kt src/database/DatabaseManager.kt src/models/Budget.kt src/models/User.kt -cp "lib/sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
+
+# use PowerShell or VS Code terminal
 java --enable-native-access=ALL-UNNAMED -cp "EasyBudget.jar;lib/*" MainKt
 ```
 
