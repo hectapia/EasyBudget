@@ -43,8 +43,8 @@ erDiagram
 
 ## Software Demo Videos
 
-[Video Sprint 1](https://youtu.be/QyvKhQnDOjU)
-[Video Sprint 2](http://youtube.link.goes.here)
+[Video Sprint 1](https://youtu.be/QyvKhQnDOjU) 
+[Video Sprint 2](http://youtube.link.goes.here) 
 
 # Development Environment
 
@@ -63,9 +63,8 @@ java -jar CLI-EasyBudget.jar
 
 ### How to run Sprint 2, branch 2nd-sprint-v2
 ```powershell
+### use PowerShell
 EasyBudget> kotlinc src/main.kt src/models/Expense.kt src/database/DatabaseManager.kt src/models/Budget.kt src/models/User.kt -cp "lib/sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
-
-```
 java --enable-native-access=ALL-UNNAMED -cp "EasyBudget.jar;lib/*" MainKt
 ```
 
@@ -76,3 +75,6 @@ java --enable-native-access=ALL-UNNAMED -cp "EasyBudget.jar;lib/*" MainKt
 - [JetBrains Blog on Kotlin](https://blog.jetbrains.com/kotlin/)  
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/kotlin)  
 - [GeeksforGeeks Kotlin Tutorials](https://www.geeksforgeeks.org/kotlin-programming-language/)  
+- [What Is a Relational Database?](https://www.oracle.com/database/what-is-a-relational-database/)  
+- [Relational Databases](https://en.wikipedia.org/wiki/Relational_database)  
+- [SQL Tutorial](https://www.w3schools.com/sql/)  
