@@ -1,12 +1,11 @@
 package models
 
-/**
- * Sprint 2 Refactored: Added date field for filtering.
- */
+// Data class representing an expense entry
 data class Expense(
-    val id: Int? = null,
-    val name: String,
-    val amount: Double,
-    val category: String,
-    val date: String  // Format: YYYY-MM-DD
+    val id: Int? = null, 
+    val userId: Int, 
+    val budgetId: Int, 
+    val name: String, 
+    val amount: Double, 
+    val date: String
 )

@@ -12,15 +12,45 @@ Easy Budget is a financial management tool currently operating as a Command Line
 
 The purpose of writing this software is to establish a robust backend foundation for a future native Android application. By handling the database logic in a standalone Kotlin environment first, I can ensure the core financial engine is stable, type-safe, and efficient before introducing the complexities of a mobile User Interface.
 
-[Software Demo Video](https://youtu.be/QyvKhQnDOjU) Sprin 1
-[Software Demo Video](http://youtube.link.goes.here) Sprin 2
+## Diagrama relacional (Mermaid ER)
+```mermaid
+erDiagram
+    USERS ||--o{ BUDGETS : "manages"
+    USERS ||--o{ EXPENSES : "records"
+    BUDGETS ||--o{ EXPENSES : "contains"
+
+    USERS {
+        integer id PK
+        string username "UNIQUE"
+    }
+
+    BUDGETS {
+        integer id PK
+        integer user_id FK
+        string category
+        real limit_amount "CHECK >= 0"
+    }
+
+    EXPENSES {
+        integer id PK
+        integer user_id FK
+        integer budget_id FK
+        string name
+        real amount "CHECK > 0"
+        string date "YYYY-MM-DD"
+    }
+```
+
+## Software Demo Videos
+
+[Video Sprint 1](https://youtu.be/QyvKhQnDOjU)
+[Video Sprint 2](http://youtube.link.goes.here)
 
 # Development Environment
 
 - **IDE/Editor:** Visual Studio Code & Kotlin Playground (for quick testing)
 - **Programming Language:** Kotlin
 - **SQLite:** Used for local, serverless data persistence on the device.
-
 The software is built using **Kotlin 1.9** and leverages:
 * **JDBC (Java Database Connectivity):** To build and submit dynamic SQL commands.
 * **The Repository Pattern:** An architectural design that decouples the application logic from the specific database implementation.
@@ -32,9 +62,10 @@ java -jar CLI-EasyBudget.jar
 ```
 
 ### How to run Sprint 2, branch 2nd-sprint-v2
-```PowerShell
-kotlinc src\main.kt src\models\Expense.kt src\database\DatabaseManager.kt src\database\BudgetRepository.kt src\database\SupabaseManager.kt src\utils\NetworkUtils.kt -cp "lib\postgresql-42.7.2.jar;lib\sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
+```powershell
+EasyBudget> kotlinc src/main.kt src/models/Expense.kt src/database/DatabaseManager.kt src/models/Budget.kt src/models/User.kt -cp "lib/sqlite-jdbc-3.51.2.0.jar" -include-runtime -d EasyBudget.jar
 
+```
 java --enable-native-access=ALL-UNNAMED -cp "EasyBudget.jar;lib/*" MainKt
 ```
 
