@@ -44,7 +44,7 @@ erDiagram
 ## Software Demo Videos
 
 [Video Sprint 1](https://youtu.be/QyvKhQnDOjU) <br>
-[Video Sprint 2](http://youtube.link.goes.here) 
+[Video Sprint 2](https://youtu.be/BBI-YFD-bNo) 
 
 # Development Environment
 

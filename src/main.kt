@@ -19,6 +19,7 @@ fun main() {
 
     println("Debug: Logged in as $username (ID: $userId)")
 
+    // Main Menu
     var running = true
     while (running) {
         println("\nMain Menu")
